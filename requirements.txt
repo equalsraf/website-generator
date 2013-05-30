@@ -1,0 +1,7 @@
+yaml
+jinja2
+markdown
+requests
+PyRss2Gen
+
+

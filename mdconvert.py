@@ -7,7 +7,6 @@ Usage:
 
 Options:
     -h --help               Show this screen
-    --dotcloud APPNAME      Generate dotcloud file
 
 """
 
@@ -272,13 +271,4 @@ if __name__ == '__main__':
     file(os.path.join(args['<outdir>'], 'index.html'), 'w').write(output.encode('utf-8'))
 
     write_rss(articles, os.path.join(args['<outdir>'], 'rss.xml') )
-
-    # Generate dotloud file
-    if args['--dotcloud']:
-        import yaml
-        with file(os.path.join(args['<outdir>'], 'dotcloud.yml'), 'w') as f:
-            data = { 'www' : {'type': 'static'}}
-            yaml.safe_dump(data, f, default_flow_style=False)
-
-
 

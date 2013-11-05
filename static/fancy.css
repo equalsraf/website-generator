@@ -22,6 +22,12 @@ article h2 {
 	margin-bottom:	1ex;
 }
 
+#title_box {
+	margin: auto;
+	max-width: 100ex;
+	display: block;
+}
+
 #preamble, #menu, #content, .disclaimer {
 	max-width: 100ex;
 	margin: auto;

@@ -8,7 +8,6 @@ Usage:
 Options:
     -h --help               Show this screen
     --dotcloud APPNAME      Generate dotcloud file
-    --rss                   Generate RSS feed
 
 """
 
@@ -22,6 +21,7 @@ import requests, base64
 import logging, os, sys
 import mimetypes
 import PyRSS2Gen, datetime
+import shutil
 from urlparse import urljoin
 
 def include_file(path, encoding='utf8'):
@@ -171,7 +171,7 @@ def convert_single_file(path, encoding='utf8'):
         html = conv_markdown( f.read().decode(encoding), local_path=os.path.dirname(args['<file>']) )[0]
     return html
 
-def is_valid_file(path):
+def is_valid_file(path, exts=('',)):
     """
     Returns False for:
 
@@ -182,10 +182,10 @@ def is_valid_file(path):
         return False
 
     ext = os.path.splitext(path)[-1].lower()
-    if ext != '':
-        return False
+    if ext in exts:
+        return True
 
-    return True
+    return False
 
 def write_rss(articles, out_path):
     """
@@ -206,6 +206,7 @@ def write_rss(articles, out_path):
                         lastBuildDate = datetime.datetime.now(),
                         items=items)
     rss.write_xml(open(out_path, 'w'))
+
 
 if __name__ == '__main__':
     from docopt import docopt
@@ -229,19 +230,27 @@ if __name__ == '__main__':
     except:
         pass
 
-    paths = [ os.path.join(args['<indir>'], path) for path in os.listdir(args['<indir>']) if is_valid_file(path)]
+    paths = [ os.path.join(args['<indir>'], path.decode('utf8')) for path in os.listdir(args['<indir>']) if is_valid_file(path.decode('utf8'), ('', '.png'))]
     paths.sort(reverse=True)
 
     articles = []
     for idx, path in enumerate(paths):
-        print(path)
+        if not os.path.isfile(path):
+            continue
+
+        ext = os.path.splitext(path)[-1].lower()
+        if ext:
+            shutil.copy(path, args['<outdir>'])
+            continue
+
+        # html files
         a_in = file(path)
         a_out = file(os.path.join( args['<outdir>'], os.path.basename(path)+'.html'), 'w')
         html,metadata = conv_markdown( a_in.read().decode('utf-8'),
                                 local_path=args['<indir>'] )
 
         template = env.get_template('article.html')
-        output = template.render(html=html, metadata=metadata)
+        output = template.render(html=html, metadata=metadata, basename=os.path.basename(path))
         a_out.write(output.encode('utf-8'))
 
         if 'hidden' in metadata:
@@ -259,11 +268,10 @@ if __name__ == '__main__':
 
     # write index.html
     template = env.get_template('article_list.html')
-    output = template.render(articles=articles, rss=args['--rss'])
+    output = template.render(articles=articles, rss=True)
     file(os.path.join(args['<outdir>'], 'index.html'), 'w').write(output.encode('utf-8'))
 
-    if args['--rss']:
-        write_rss(articles, os.path.join(args['<outdir>'], 'rss.xml') )
+    write_rss(articles, os.path.join(args['<outdir>'], 'rss.xml') )
 
     # Generate dotloud file
     if args['--dotcloud']:

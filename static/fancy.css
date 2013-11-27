@@ -5,7 +5,7 @@ body {
 }
 
 h1, h2, h3 {
-	font-family: "omnes-pro";
+	font-family: 'Cantata One', serif;
 }
 
 h1 {
@@ -41,6 +41,13 @@ article.h2 {
 }
 
 /* here be dragons */
+
+@font-face {
+	font-family: "Cantata One";
+	font-style: normal;
+	font-weight: 400;
+	src: url('cantata.woff')
+}
 
 @font-face {
     font-family: "omnes-pro";

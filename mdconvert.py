@@ -167,8 +167,10 @@ def convert_single_file(path, encoding='utf8'):
     Reads Markdown input from a file and returns parsed html
     """
     with file(args['<file>']) as f:
-        html = conv_markdown( f.read().decode(encoding), local_path=os.path.dirname(args['<file>']) )[0]
-    return html
+        html,metadata = conv_markdown( f.read().decode(encoding), local_path=os.path.dirname(args['<file>']) )
+        template = env.get_template('article.html')
+        output = template.render(html=html, metadata=metadata, bare=True)
+    return output
 
 def is_valid_file(path, exts=('',)):
     """
@@ -211,15 +213,15 @@ if __name__ == '__main__':
     from docopt import docopt
     args = docopt(__doc__, version="raf's markdown converter")
 
-    if args['<file>']:
-        print(convert_single_file(args['<file>']))
-        sys.exit(0)
-
     # from here on, we are generating a folder
     from jinja2 import Environment, FileSystemLoader
     env=Environment(loader=FileSystemLoader('templates'))
     env.globals['include_file'] = include_file
     env.globals['include_image'] = include_image
+
+    if args['<file>']:
+        print(convert_single_file(args['<file>']))
+        sys.exit(0)
 
     if os.path.exists(args['<outdir>']):
         logging.warning('Output path already exists')
@@ -228,6 +230,12 @@ if __name__ == '__main__':
         os.mkdir(args['<outdir>'])
     except:
         pass
+
+    staticfiles = [ os.path.join('static', path.decode('utf8')) for path in os.listdir('static')]
+    for staticfile in staticfiles:
+        if staticfile.startswith('.'):
+            continue
+        shutil.copy(staticfile, args['<outdir>'])
 
     paths = [ os.path.join(args['<indir>'], path.decode('utf8')) for path in os.listdir(args['<indir>']) if is_valid_file(path.decode('utf8'), ('', '.png'))]
     paths.sort(reverse=True)
@@ -251,6 +259,14 @@ if __name__ == '__main__':
         template = env.get_template('article.html')
         output = template.render(html=html, metadata=metadata, basename=os.path.basename(path))
         a_out.write(output.encode('utf-8'))
+        a_out.close()
+
+        # Write print friendly version as name.print.html
+        template = env.get_template('article.html')
+        output = template.render(html=html, metadata=metadata, basename=os.path.basename(path), bare=True)
+        p_out = file(os.path.join( args['<outdir>'], os.path.basename(path)+'.print.html'), 'w')
+        p_out.write(output.encode('utf-8'))
+        p_out.close()
 
         if 'hidden' in metadata:
             continue
@@ -262,6 +278,7 @@ if __name__ == '__main__':
                     'content': html,
                     'href': href,
                     })
+
 
     url_prefix = 'http://ruiabreu.org/'
 

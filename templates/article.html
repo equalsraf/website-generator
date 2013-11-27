@@ -1,16 +1,18 @@
 {% extends "index.html" %}
 
 {% block head %}
-<script>
-	{{ include_file('static/jquery-1.9.1.js') }}
+{% if not bare %}
+<link rel="Alternate" media="Print" href="{{basename}}.print.html" />
+<script src="jquery-1.9.1.js">
 </script>
+{% endif %}
 {% endblock %}
 
 {% block content%}
 <div id="content">
 {{html|safe}}
 
-
+{% if not bare %}
 <div id="social">
 	<h2>Liked this? Share it.</h2>
 	<div class="links">
@@ -37,6 +39,11 @@ anchor.attr('href', anchor.attr('href') + url);
 
 $('#social').show();
 </script>
+
+<h2>Download this</h2>
+<p>To save this as a clean single HTML file you can save, press <a href="{{basename}}.print.html">here</a>
+This is ideal for long term storage or reading on your ebook reader.</p>
+{% endif %}
 
 </div>
 {% endblock %}

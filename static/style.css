@@ -21,7 +21,7 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 2.0em;
 	margin-bottom: 0.5em;
 	margin-top: 0.5em;
 	line-height: 1em;
@@ -34,6 +34,10 @@ h2 {
 	font-weight:	bold;
 	text-transform: uppercase;
 	clear:	both;
+}
+
+h2.article_title a {
+	color: black;
 }
 
 h1.page_title {
@@ -50,11 +54,16 @@ h3 {
 }
 
 p {
+	margin: 10px 0 10px 0;
 }
 
 p, ul, ol {
 	line-height		: 1.5em;
 	font-size:		1.5em;
+}
+
+ul, ol {
+	padding-left:		2ex;
 	margin-top:		0;
 }
 

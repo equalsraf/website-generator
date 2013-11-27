@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <html>
 <head>
+	<link href='http://fonts.googleapis.com/css?family=Cantata+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	{% if rss %}
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
@@ -8,30 +9,33 @@
 
 	<title>{%block title%}{%endblock%}</title>
 	
-	<style type="text/css" media="screen">
-	{{ include_file('static/style.css') }}
-	</style>
+	{% if bare%}
+        <style type="text/css" media="screen">
+        {{ include_file('static/style.css') }}
+        </style>
 
-    	<style type="text/css" media="screen and (min-device-width: 1024px)"/>
-	{{ include_file('static/fancy.css') }}
-	</style>
-
-	<style type="text/css" media="screen">
-	{{ include_file('static/code.css') }}
-	</style>
+        <style type="text/css" media="screen">
+        {{ include_file('static/code.css') }}
+        </style>
+	{% else %}
+	<link type="text/css" media="screen" href="style.css" rel="stylesheet">
+    	<link type="text/css" media="screen and (min-device-width: 1024px)" href="fancy.css" rel="stylesheet"/>
+	<link type="text/css" media="screen" href="code.css" rel="stylesheet"/>
+	{% endif %}
 
 	{% block head %}
 	{% endblock %}
 </head>
 <body>
 
+	{%if not bare%}
 	<div id="title_box">
-	<h1 class="page_title">cat /dev/<span class="red">raf</span>&gt;</h1>
+	<h1 class="page_title">cat /dev/<span class="red">raf</span>/web&gt;</h1>
 	</div>
 
 	{% block menu %}
 	{% endblock %}
-</div>
+	{%endif%}
 
 
 {% block content %}
@@ -39,7 +43,7 @@
 {% endblock %}
 
 <div class="disclaimer">
-Copyright @ Rui Abreu Ferreira 2012, the opinions expressed here are those of the authors and
+Copyright @ Rui Abreu Ferreira 2014, the opinions expressed here are those of the authors and
 do not reflect the position of anyone else ... really ...
 </div>
 

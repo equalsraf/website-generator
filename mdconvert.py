@@ -92,7 +92,7 @@ class ArticleTreeProcessor(Treeprocessor):
         self.markdown.ArticlePreamble = ''
         p = root.find('p')
         if p != None:
-            self.markdown.ArticlePreamble = p.text
+            self.markdown.ArticlePreamble = etree.tostring(p, method='text', encoding='utf8')
             p.attrib['class'] = p.attrib.get('class', '') + ' article_preamble'
 
         imgs = root.findall('.//img')

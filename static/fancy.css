@@ -1,19 +1,15 @@
 
 body {
-
 	font-family: "omnes-pro";
 }
 
 h1, h2, h3 {
-	font-family: 'Cantata One', serif;
 }
 
 h1 {
-	font-weight: normal;	
 }
 
 article h2 {
-	font-weight: normal;	
 }
 
 #preamble_container {
@@ -38,6 +34,12 @@ article {
 }
 
 article.h2 {
+}
+
+.article_preamble {
+	background: #333;
+	color: #eee;
+	padding: 1em;
 }
 
 /* here be dragons */

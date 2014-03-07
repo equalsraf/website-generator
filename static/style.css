@@ -14,10 +14,10 @@ body {
 }
 
 h1, h2, h3 {
-	font-family: serif; 
-	font-weight: normal;
+	margin-top: 1em;
+	font-weight: bold;
+	margin-bottom: 0em;
 	color: #333;
-	margin-bottom: 0.2em;
 }
 
 h1 {
@@ -30,14 +30,13 @@ h1 {
 
 h2 {
 	font-size: 1.5em;
-	color:		#999;
 	font-weight:	bold;
 	text-transform: uppercase;
 	clear:	both;
 }
 
 h2.article_title a {
-	color: black;
+	color: #0057ae;
 }
 
 h1.page_title {
@@ -45,7 +44,7 @@ h1.page_title {
 	margin-bottom: 0;
 	font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono','Bitstream Vera Sans Mono', monospace!important;
 	font-size: 2em;
-	
+	color: #aaa;
 }
 
 h3 {
@@ -78,9 +77,13 @@ a {
 }
 
 #menu {
+	background: #0057ae;
+	color: #eee;
+	padding: 0 0.5ex 0 0.5ex;
 	margin-top: 1ex;
 	clear:		both;
 	display:	block;
+	position:	relative;
 }
 
 #menu a.sel {
@@ -101,9 +104,8 @@ a {
 }
 
 .external {
-	vertical-align: top;
 	text-align:	left;
-	padding:	3px 3px 3px 0;
+	margin: 0 0 0 73px;
 }
 
 .red {
@@ -115,9 +117,17 @@ a {
 }
 
 #menu .external a {
-	color:		#333;
+	color:		#eee;
 	text-transform:	none;
-	border-bottom: 2px solid #226CFF;
+	border-bottom: 2px solid #eee;
+}
+
+#menu img {
+	margin: auto;
+	position: absolute;
+	top:0; bottom:0;
+	max-height: 100%
+	max-width: 100%
 }
 
 #social  {
@@ -162,10 +172,11 @@ a {
 }
 
 .codehilite > pre {
-	border-left: 4px solid #666;
+	border-left: 6px solid #333;
 	padding: 2px 2px 2px 5px;
 	white-space: pre-wrap;
 	word-wrap: break-word;
+	background: #eee;
 }
 
 #social a.twitter:hover {

@@ -12,6 +12,10 @@ h1 {
 article h2 {
 }
 
+p {
+	margin-bottom: 0.5em;
+}
+
 #preamble_container {
 	background: 	#eee;
 	padding:	0 0 0.5ex 0;
@@ -24,10 +28,19 @@ article h2 {
 	display: block;
 }
 
-#preamble, #menu, #content, .disclaimer {
+#preamble, #menu, #about, #content, .disclaimer {
 	max-width: 100ex;
 	margin: auto;
 	line-height		: 1.5em;
+}
+
+#about {
+	position 		: relative;
+	left 			: -66px;
+}
+
+#menu {
+	border-radius: 64px;
 }
 
 article {

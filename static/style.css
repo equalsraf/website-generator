@@ -6,6 +6,7 @@ body {
 	margin:	auto;
 	margin-top:		0;
 	line-height		: 1.25em;
+	max-width: 99%;
 }
 
 #content img {
@@ -22,17 +23,15 @@ h1, h2, h3 {
 
 h1 {
 	font-size: 2.0em;
-	margin-bottom: 0.5em;
 	margin-top: 0.5em;
-	line-height: 1em;
 	line-height: 1.2em;
 }
 
 h2 {
 	font-size: 1.5em;
 	font-weight:	bold;
-	text-transform: uppercase;
 	clear:	both;
+	line-height: 1.2em;
 }
 
 h2.article_title a {
@@ -53,7 +52,7 @@ h3 {
 }
 
 p {
-	margin: 10px 0 10px 0;
+	margin: 2px 0 1.5em 0;
 }
 
 p, ul, ol {
@@ -62,7 +61,6 @@ p, ul, ol {
 }
 
 ul, ol {
-	padding-left:		2ex;
 	margin-top:		0;
 }
 
@@ -72,8 +70,15 @@ pre {
 
 a {
 	text-decoration		: none;
-	text-transform		: uppercase;
+	/*text-transform	: uppercase;*/
 	color			: #226CFF;
+}
+
+a.more {
+}
+
+#about {
+	color 			: #666;
 }
 
 #menu {

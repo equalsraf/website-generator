@@ -2,11 +2,11 @@
 
 
 {% block menu%}
-	<div id="menu">
+	<div id="about">
 	<img align="left" src="me7.png"/>
 	<p class="external">
-	I'm a <a href="http://www.linkedin.com/pub/rui-ferreira/15/b44/a79">researcher</a> and <a href="http://code.ruiabreu.org">developer</a>, here are a few links to the digital me, and some random notes.
-	Poke me via <a href="https://twitter.com/account/redirect_by_id?id=81713248">twitter</a> if you found something useful here. BTW here is a cool <a href="linux-timeline.png">figure</a> about me.</p>
+	I'm a <a href="http://www.linkedin.com/pub/rui-ferreira/15/b44/a79">researcher</a> and <a href="http://code.ruiabreu.org">developer</a>, here are my random notes.
+	Poke me via <a href="https://twitter.com/account/redirect_by_id?id=81713248">twitter</a> if you found something useful here. BTW here is a cool figure <a href="linux-timeline.png">about me</a>. Subscribe the <a href="rss.xml">RSS</a> feed for updates.</p>
 	</div>
 
 {% endblock %}
@@ -16,10 +16,13 @@
 <div id="content" class="article_list">
 {% for article in articles %}
 	<article>
-	<h2 class="article_title"><a href="{{article.href}}">{{article.title}}</a></h2>
+	<h2 class="article_title">{{article.title}}</h2>
 	<p>
-	{{article.description}}
+	{{article.description}}<a class="more" href="{{article.href}}">| more</a>
 	</p>
 	</article>
 {% endfor %} </div> 
+
 {% endblock %}
+
+

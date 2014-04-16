@@ -73,17 +73,18 @@ class ArticleTreeProcessor(Treeprocessor):
         h1 = root.find('h1')
         if h1 == None:
             if self.markdown.ArticleTitle:
-                h1 = etree.Element('h1')
-                h1.text = self.markdown.ArticleTitle
-                root.insert(0, h1)
+                #h1 = etree.Element('h1')
+                #h1.text = self.markdown.ArticleTitle
+                #root.insert(0, h1)
+                pass
             else:
                 logging.warning('This article has no title')
         else:
             if root[0] != h1:
                 logging.warning('Disregarding late h1 title (%s)' % h1.text)
-                h1 = etree.Element('h1')
-                h1.text = self.markdown.ArticleTitle
-                root.insert(0, h1)
+                #h1 = etree.Element('h1')
+                #h1.text = self.markdown.ArticleTitle
+                #root.insert(0, h1)
             else:
                 if self.markdown.ArticleTitle:
                     logging.warning('Markdown text has two titles (%s)' % h1.text)
@@ -277,6 +278,7 @@ if __name__ == '__main__':
                     'description': metadata['description'],
                     'content': html,
                     'href': href,
+                    'metadata': metadata
                     })
 
 

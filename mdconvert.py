@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """A magic markdown converter, to generate html for my website
 
 Usage:
@@ -19,15 +19,19 @@ from markdown.util import etree
 import requests, base64
 import logging, os, sys
 import mimetypes
-import PyRSS2Gen, datetime
+import feedgenerator, datetime
 import shutil
-from urlparse import urljoin
+
+if sys.version_info.major < 3:
+    from urlparse import urljoin
+else:
+    from urllib.parse import urljoin
 
 def include_file(path, encoding='utf8'):
-    return file(path).read().decode(encoding)
+    return open(path).read()
 
 def include_image(path):
-    b64 = base64.b64encode( file(path).read() )
+    b64 = base64.b64encode( open(path).read() )
     mimetype = mimetypes.guess_type(path)[0]
     return 'data:%s;base64,%s' % (mimetype, b64)
 
@@ -93,7 +97,7 @@ class ArticleTreeProcessor(Treeprocessor):
         self.markdown.ArticlePreamble = ''
         p = root.find('p')
         if p != None:
-            self.markdown.ArticlePreamble = etree.tostring(p, method='text', encoding='utf8')
+            self.markdown.ArticlePreamble = etree.tostring(p, method='text', encoding='unicode')
             p.attrib['class'] = p.attrib.get('class', '') + ' article_preamble'
 
         imgs = root.findall('.//img')
@@ -112,9 +116,11 @@ class ArticleTreeProcessor(Treeprocessor):
             except requests.models.MissingSchema:
                 if self.local_path:
                     try:
-                        content = file(os.path.join(self.local_path, src)).read()
-                    except:
-                        logging.warning('Unable to get local <img> %s' % src)
+                        path = os.path.join(self.local_path, src)
+                        content = open(path, "rb").read()
+                    except Exception as ex:
+                        logging.warning('Unable to get local <img> %s: %s' 
+                                % (path, ex))
                         continue
 
                     mimetype = mimetypes.guess_type(src)[0]
@@ -167,7 +173,7 @@ def convert_single_file(path, encoding='utf8'):
     """
     Reads Markdown input from a file and returns parsed html
     """
-    with file(args['<file>']) as f:
+    with open(args['<file>']) as f:
         html,metadata = conv_markdown( f.read().decode(encoding), local_path=os.path.dirname(args['<file>']) )
         template = env.get_template('article.html')
         output = template.render(html=html, metadata=metadata, bare=True)
@@ -193,22 +199,21 @@ def write_rss(articles, out_path):
     """
     Write an RSS file from a list of articles
     """
-    items = []
+    rss = feedgenerator.Rss201rev2Feed(
+        title="raf's random writings",
+        link=url_prefix,
+        description='Random ramblings by a computer engineer',
+        language="en")
+
     for art in articles:
-        item = PyRSS2Gen.RSSItem(
+        rss.add_item(
                     title=art['title'],
                     description=art['description'],
                     link=urljoin(url_prefix, art['href'])
-                    )
-        items.append(item)
+                )
 
-    rss = PyRSS2Gen.RSS2(title="raf's random writings",
-                        description='Random ramblings by a computer engineer',
-                        link=url_prefix,
-                        lastBuildDate = datetime.datetime.now(),
-                        items=items)
-    rss.write_xml(open(out_path, 'w'))
-
+    with open(out_path, 'w') as fp:
+        rss.write(fp, 'utf8')
 
 if __name__ == '__main__':
     from docopt import docopt
@@ -232,13 +237,13 @@ if __name__ == '__main__':
     except:
         pass
 
-    staticfiles = [ os.path.join('static', path.decode('utf8')) for path in os.listdir('static')]
+    staticfiles = [ os.path.join('static', path) for path in os.listdir('static')]
     for staticfile in staticfiles:
         if staticfile.startswith('.'):
             continue
         shutil.copy(staticfile, args['<outdir>'])
 
-    paths = [ os.path.join(args['<indir>'], path.decode('utf8')) for path in os.listdir(args['<indir>']) if is_valid_file(path.decode('utf8'), ('', '.png'))]
+    paths = [ os.path.join(args['<indir>'], path) for path in os.listdir(args['<indir>']) if is_valid_file(path, ('', '.png'))]
     paths.sort(reverse=True)
 
     articles = []
@@ -252,21 +257,21 @@ if __name__ == '__main__':
             continue
 
         # html files
-        a_in = file(path)
-        a_out = file(os.path.join( args['<outdir>'], os.path.basename(path)+'.html'), 'w')
-        html,metadata = conv_markdown( a_in.read().decode('utf-8'),
+        a_in = open(path)
+        a_out = open(os.path.join( args['<outdir>'], os.path.basename(path)+'.html'), 'w')
+        html,metadata = conv_markdown( a_in.read(),
                                 local_path=args['<indir>'] )
 
         template = env.get_template('article.html')
         output = template.render(html=html, metadata=metadata, basename=os.path.basename(path))
-        a_out.write(output.encode('utf-8'))
+        a_out.write(output)
         a_out.close()
 
         # Write print friendly version as name.print.html
         template = env.get_template('article.html')
         output = template.render(html=html, metadata=metadata, basename=os.path.basename(path), bare=True)
-        p_out = file(os.path.join( args['<outdir>'], os.path.basename(path)+'.print.html'), 'w')
-        p_out.write(output.encode('utf-8'))
+        p_out = open(os.path.join( args['<outdir>'], os.path.basename(path)+'.print.html'), 'w')
+        p_out.write(output)
         p_out.close()
 
         if 'hidden' in metadata:
@@ -287,7 +292,7 @@ if __name__ == '__main__':
     # write index.html
     template = env.get_template('article_list.html')
     output = template.render(articles=articles, rss=True)
-    file(os.path.join(args['<outdir>'], 'index.html'), 'w').write(output.encode('utf-8'))
+    open(os.path.join(args['<outdir>'], 'index.html'), 'w').write(output)
 
     write_rss(articles, os.path.join(args['<outdir>'], 'rss.xml') )
 

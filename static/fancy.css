@@ -3,17 +3,7 @@ body {
 	font-family: "omnes-pro";
 }
 
-h1, h2, h3 {
-}
-
-h1 {
-}
-
-article h2 {
-}
-
 p {
-	margin-bottom: 0.5em;
 }
 
 #preamble_container {
@@ -24,6 +14,7 @@ p {
 
 #title_box {
 	margin: auto;
+	margin-bottom: 0;
 	max-width: 100ex;
 	display: block;
 }
@@ -36,17 +27,11 @@ p {
 
 #about {
 	position 		: relative;
-	left 			: -66px;
+	left 			: -51px;
 }
 
 #menu {
 	border-radius: 64px;
-}
-
-article {
-}
-
-article.h2 {
 }
 
 .article_preamble {

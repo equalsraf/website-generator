@@ -9,21 +9,31 @@ body {
 	max-width: 99%;
 }
 
+#content {
+	margin-top: 0;
+}
+
 #content img {
 	max-width: 100%;
 	clear: both;
 }
 
 h1, h2, h3 {
-	margin-top: 1em;
+	margin-top: 3ex;
 	font-weight: bold;
 	margin-bottom: 0em;
 	color: #333;
 }
 
+article {
+	margin-top: 0.5em;
+}
+
+article h2 {
+}
+
 h1 {
 	font-size: 2.0em;
-	margin-top: 0.5em;
 	line-height: 1.2em;
 }
 
@@ -52,11 +62,11 @@ h3 {
 }
 
 p {
-	margin: 2px 0 1.5em 0;
+	margin: 1ex 0 0 0;
 }
 
 p, ul, ol {
-	line-height		: 1.5em;
+	line-height		: 1.6em;
 	font-size:		1.5em;
 }
 
@@ -79,6 +89,11 @@ a.more {
 
 #about {
 	color 			: #666;
+}
+
+#about img {
+	height: 48px;
+	height: 3em;
 }
 
 #menu {
@@ -108,23 +123,12 @@ a.more {
 	
 }
 
-.external {
-	text-align:	left;
-	margin: 0 0 0 73px;
-}
-
 .red {
 	color: #EA4B2A;
 }
 
 .blue {
 	color			: #226CFF;
-}
-
-#menu .external a {
-	color:		#eee;
-	text-transform:	none;
-	border-bottom: 2px solid #eee;
 }
 
 #menu img {
@@ -182,6 +186,7 @@ a.more {
 	white-space: pre-wrap;
 	word-wrap: break-word;
 	background: #eee;
+	margin-top: 2em;
 }
 
 #social a.twitter:hover {

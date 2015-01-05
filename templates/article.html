@@ -42,7 +42,7 @@ $('#social').show();
 </script>
 {% endif %}
 
-{% if not bare %}
+{% if not bare and 'noarticle' not in metadata %}
 <div class="download">
 <h2>Download this</h2>
 <p>To save this as a clean single HTML file, click <a href="{{basename}}.print.html">here</a>

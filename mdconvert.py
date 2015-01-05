@@ -113,8 +113,10 @@ class ArticleTreeProcessor(Treeprocessor):
                 self.markdown.ArticleTitle = h1.text
 
         self.markdown.ArticlePreamble = ''
+        # Article metadata noarticle: disables the preamble paragraph
+        nopreamble = hasattr(self.markdown, 'Meta') and 'noarticle' in self.markdown.Meta
         p = root.find('p')
-        if p != None:
+        if p != None and not nopreamble:
             self.markdown.ArticlePreamble = etree.tostring(p, method='text', encoding='unicode')
             p.attrib['class'] = p.attrib.get('class', '') + ' article_preamble'
 
@@ -275,7 +277,7 @@ if __name__ == '__main__':
         printpath = os.path.join( args['<outdir>'], os.path.basename(path)+'.print.html')
         generate_html(printpath, 'article.html', **data)
 
-        if 'hidden' in metadata:
+        if 'hidden' in metadata or 'noarticle' in metadata:
             continue
 
         # Write the index page

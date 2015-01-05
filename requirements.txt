@@ -1,6 +1,6 @@
-yaml
 jinja2
 markdown
 requests
 feedgenerator
 pygments
+docopt

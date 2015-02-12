@@ -208,3 +208,11 @@ a.more {
 .download, .download h2 {
 	color: #666;
 }
+
+blockquote {
+	background: #ddd;
+	color: #666;
+	margin: 0;
+	border-left: 2ex solid #bbb;
+}
+

@@ -252,7 +252,7 @@ if __name__ == '__main__':
 
     copy_static(args['<outdir>'])
 
-    paths = [ os.path.join(args['<indir>'], path) for path in os.listdir(args['<indir>']) if is_valid_file(path, ('', '.png'))]
+    paths = [ os.path.join(args['<indir>'], path) for path in os.listdir(args['<indir>']) if is_valid_file(path, ('.md', '.png'))]
     paths.sort(reverse=True)
 
     articles = []
@@ -261,7 +261,7 @@ if __name__ == '__main__':
             continue
 
         ext = os.path.splitext(path)[-1].lower()
-        if ext:
+        if ext != '.md':
             shutil.copy(path, args['<outdir>'])
             continue
 
@@ -270,21 +270,22 @@ if __name__ == '__main__':
         html,metadata = conv_markdown( a_in.read(),
                                 local_path=args['<indir>'] )
 
-        data = {'html':html, 'metadata':metadata, 'basename':os.path.basename(path)}
+        basename = os.path.splitext(os.path.basename(path))[0]
+        data = {'html':html, 'metadata':metadata, 'basename':basename}
         # Write html article
-        htmlpath = os.path.join( args['<outdir>'], os.path.basename(path)+'.html')
+        htmlpath = os.path.join( args['<outdir>'], basename+'.html')
         generate_html(htmlpath, 'article.html', **data)
 
         # Write print friendly version as name.print.html
         data['bare'] = True
-        printpath = os.path.join( args['<outdir>'], os.path.basename(path)+'.print.html')
+        printpath = os.path.join( args['<outdir>'], basename+'.print.html')
         generate_html(printpath, 'article.html', **data)
 
         if 'hidden' in metadata or 'noarticle' in metadata:
             continue
 
         # Write the index page
-        href = os.path.basename(path) + '.html'
+        href = basename + '.html'
         articles.append({
                     'title': metadata['title'],
                     'description': metadata['description'],

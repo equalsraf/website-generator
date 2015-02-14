@@ -147,42 +147,6 @@ a {
 	max-width: 100%
 }
 
-#social  {
-	padding:	3px;
-	display: none;
-}
-
-#social .links {
-	column-count: 2;
-	-moz-column-count: 2;
-	margin-left:	10px;
-}
-
-#social .title {
-	color:	#666;
-}
-
-#social a {
-	padding-right:	1ex;
-}
-
-
-#social a {
-	display: block;
-	font-size: 1.5em;
-	padding: 5px;
-	color:	#666;
-}
-
-#social a:hover {
-	color:	black;
-}
-
-#social h2 {
-	margin : 10px 0;
-}
-
-
 .disclaimer {
 	margin: 2ex 3px 3px 0;
 	color:	#ccc;

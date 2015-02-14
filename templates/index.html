@@ -34,7 +34,13 @@
 	{% block menu %}
 	{% endblock %}
 	<div id="title_box">
+	{% if subtitle %}
+	<h1 class="page_title"><span class="red">raf$</span> cat <span class="blue">{{subtitle}}</span></h1>
+	{% else %}
 	<h1 class="page_title"><span class="red">raf$</span> dmesg</h1>
+	{% endif %}
+		
+	</h1>
 	</div>
 	{%endif%}
 

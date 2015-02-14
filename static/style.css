@@ -1,6 +1,6 @@
 
 body {
-	font-family: Helvetica, DejaVu Sans, sans-serif; 
+	font-family: serif; 
 	font-size: 10pt; 
 	color: #000;
 	margin:	auto;
@@ -22,7 +22,16 @@ h1, h2, h3 {
 	margin-top: 3ex;
 	font-weight: bold;
 	margin-bottom: 0em;
-	color: #333;
+}
+h2, h3 {
+	text-decoration: underline;
+}
+
+.date {
+	font-weight: normal;
+	margin-right: 1ex;
+	font-family: monospace;
+	color: #999;
 }
 
 article {
@@ -30,6 +39,8 @@ article {
 }
 
 article h2 {
+	font-weight: normal;
+	text-decoration: none;
 }
 
 h1 {
@@ -39,7 +50,7 @@ h1 {
 
 h2 {
 	font-size: 1.5em;
-	font-weight:	bold;
+	font-weight: bold;
 	clear:	both;
 	line-height: 1.2em;
 }
@@ -84,9 +95,6 @@ a {
 	color			: #226CFF;
 }
 
-a.more {
-}
-
 #about {
 	color 			: #666;
 }
@@ -128,7 +136,7 @@ a.more {
 }
 
 .blue {
-	color			: #226CFF;
+	color			: black;
 }
 
 #menu img {

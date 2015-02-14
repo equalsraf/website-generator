@@ -225,6 +225,9 @@ def generate_html(savepath, tempname, **kw):
     with open(savepath, 'w') as fp:
         fp.write(output)
 
+def date_from_name(filename):
+    return '/'.join(filename.split('-')[:3])
+
 if __name__ == '__main__':
     from docopt import docopt
     args = docopt(__doc__, version="raf's markdown converter")
@@ -287,7 +290,8 @@ if __name__ == '__main__':
                     'description': metadata['description'],
                     'content': html,
                     'href': href,
-                    'metadata': metadata
+                    'metadata': metadata,
+                    'date':date_from_name(href),
                     })
 
     # write index.html

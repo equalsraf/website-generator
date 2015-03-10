@@ -1,6 +1,6 @@
 
 body {
-	font-family: "Droid Serif", "Deja Vu Serif", "serif";
+	font-family: "Droid Sans", "Deja Vu Sans", "sans-serif";
 }
 
 p {
@@ -22,7 +22,7 @@ p {
 #preamble, #menu, #about, #content, .disclaimer {
 	max-width: 100ex;
 	margin: auto;
-	line-height		: 1.5em;
+	line-height	: 1.5em;
 }
 
 #about {

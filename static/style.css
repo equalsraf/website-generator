@@ -1,6 +1,6 @@
 
 body {
-	font-family: serif; 
+	font-family: sans-serif; 
 	font-size: 10pt; 
 	color: #000;
 	margin:	auto;
@@ -77,7 +77,7 @@ p {
 }
 
 p, ul, ol {
-	line-height		: 1.6em;
+	line-height		: 2em;
 	font-size:		1.5em;
 }
 

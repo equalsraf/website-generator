@@ -188,3 +188,7 @@ blockquote {
 	border-left: 2ex solid #bbb;
 }
 
+p + p {
+	text-indent: 1.5em;
+}
+

@@ -25,11 +25,6 @@ p {
 	line-height	: 1.5em;
 }
 
-#about {
-	position 		: relative;
-	left 			: -51px;
-}
-
 #menu {
 	border-radius: 64px;
 }

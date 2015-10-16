@@ -261,6 +261,7 @@ if __name__ == '__main__':
             continue
 
         ext = os.path.splitext(path)[-1].lower()
+        shutil.copy(path, args['<outdir>'])
         if ext != '.md':
             shutil.copy(path, args['<outdir>'])
             continue

@@ -282,8 +282,8 @@ if __name__ == '__main__':
         printpath = os.path.join( args['<outdir>'], basename+'.print.html')
         generate_html(printpath, 'article.html', **data)
 
-        if 'hidden' in metadata or 'noarticle' in metadata:
-            continue
+#        if 'hidden' in metadata or 'noarticle' in metadata:
+#            continue
 
         # Write the index page
         href = basename + '.html'
@@ -298,7 +298,9 @@ if __name__ == '__main__':
 
     # write index.html
     indexpath = os.path.join(args['<outdir>'], 'index.html')
-    generate_html(indexpath, 'article_list.html', articles=articles, rss=True)
+    articles_index = [a for a in articles \
+            if not 'hidden' in a['metadata'] and not 'noarticle' in a['metadata']]
+    generate_html(indexpath, 'article_list.html', articles=articles_index, rss=True)
 
     write_rss('http://ruiabreu.org', articles, 
             os.path.join(args['<outdir>'], 'rss.xml') )

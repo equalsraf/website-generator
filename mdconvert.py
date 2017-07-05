@@ -282,10 +282,6 @@ if __name__ == '__main__':
         printpath = os.path.join( args['<outdir>'], basename+'.print.html')
         generate_html(printpath, 'article.html', **data)
 
-#        if 'hidden' in metadata or 'noarticle' in metadata:
-#            continue
-
-        # Write the index page
         href = basename + '.html'
         articles.append({
                     'title': metadata['title'],

@@ -302,6 +302,6 @@ if __name__ == '__main__':
             if not 'hidden' in a['metadata'] and not 'noarticle' in a['metadata']]
     generate_html(indexpath, 'article_list.html', articles=articles_index, rss=True)
 
-    write_rss('http://ruiabreu.org', articles, 
+    write_rss('http://raf.zyks.org', articles, 
             os.path.join(args['<outdir>'], 'rss.xml') )
 

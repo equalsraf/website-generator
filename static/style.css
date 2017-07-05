@@ -1,7 +1,6 @@
 
 body {
 	font-family: sans-serif; 
-	font-size: 10pt; 
 	color: #000;
 	margin:	auto;
 	margin-top:		0;
@@ -25,7 +24,6 @@ h1, h2, h3 {
 }
 
 h2, h3 {
-	font-size: 1.5rem;
 	line-height: 1.2em;
 }
 
@@ -62,7 +60,6 @@ article h2 {
 }
 
 h1 {
-	font-size: 2.0em;
 	line-height: 1.2em;
 }
 
@@ -78,8 +75,7 @@ h2.article_title a {
 h1.page_title {
 	margin-top: 0;
 	margin-bottom: 0;
-	font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono','Bitstream Vera Sans Mono', monospace!important;
-	font-size: 2em;
+	font-family: monospace!important;
 	color: #aaa;
 }
 
@@ -94,7 +90,6 @@ p {
 
 p, ul, ol {
 	line-height		: 2em;
-	font-size:		1.5em;
 }
 
 ul, ol {
@@ -102,7 +97,7 @@ ul, ol {
 }
 
 pre {
-	font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono','Bitstream Vera Sans Mono', monospace!important;
+	font-family: monospace!important;
 }
 
 a {
@@ -204,6 +199,5 @@ blockquote {
 }
 
 p + p {
-	text-indent: 1.5em;
 }
 

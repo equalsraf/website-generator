@@ -27,32 +27,17 @@
 <body>
 
 	{%if not bare%}
-
-
-	{% block menu %}
-	{% endblock %}
-	<div id="title_box">
-	{% if subtitle %}
-	<h1 class="page_title"><a href="index.html">raf/</a><span class="blue">{{subtitle}}</span></h1>
-	{% else %}
-	<h1 class="page_title"><span class="red">raf$</span> dmesg</h1>
-	{% endif %}
-		
-	</h1>
-	</div>
+		{% if subtitle %}
+		<h1><a href="index.html">raf</a>/{{subtitle}}</h1>
+		{% else %}
+		<h1><span class="red">raf$</span> dmesg</h1>
+		{% endif %}
 	{%endif%}
 
 
 {% block content %}
 
 {% endblock %}
-
-{% if not bare %}
-<div class="disclaimer">
-Copyright @ Rui Abreu Ferreira 2015, the opinions expressed here are those of the authors and
-do not reflect the position of anyone else ... really ...
-</div>
-{% endif %}
 
 </body>
 </html>

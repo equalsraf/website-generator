@@ -1,23 +1,12 @@
 {% extends "index.html" %}
 
-
-{% block menu%}
-	<div id="about">
-	<a href="https://bitbucket.com/equalsraf"><img src="bitbucket.png"/></a>
-	<a href="https://github.com/equalsraf"><img src="github.png"/></a>
-	<a href="rss.xml"><img src="rss.png"/></a>
-	</div>
-{% endblock %}
-
 {% block content%}
 
 <div id="content" class="article_list">
 {% for article in articles %}
 	<article>
-		<h2 class="article_title"><span class="date">{{article.date}}</span><a href="{{article.href}}">{{article.title}}</a></h2>
+		<span class="date">{{article.date}}</span> <a href="{{article.href}}">{{article.title}}</a>
 	</article>
 {% endfor %} </div> 
 
 {% endblock %}
-
-

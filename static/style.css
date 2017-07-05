@@ -1,15 +1,8 @@
 
 body {
-	font-family: sans-serif; 
+	font-family: monospace;
+	font-size: 12pt;
 	color: #000;
-	margin:	auto;
-	margin-top:		0;
-	line-height		: 1.25em;
-	max-width: 99%;
-}
-
-#content {
-	margin-top: 0;
 }
 
 #content img {
@@ -17,150 +10,8 @@ body {
 	clear: both;
 }
 
-h1, h2, h3 {
-	margin-top: 3ex;
-	font-weight: bold;
-	margin-bottom: 0em;
-}
-
-h2, h3 {
-	line-height: 1.2em;
-}
-
-h2::before {
-	content: "## ";
-}
-article h2::before {
-	content: "";
-}
-h3 {
-	color: #666;
-}
-h3::before {
-	content: "### ";
-}
-article h3::before {
-	content: "";
-}
-
-.date {
-	font-weight: normal;
-	margin-right: 1ex;
-	font-family: monospace;
-	color: #999;
-}
-
-article {
-	margin-top: 0.5em;
-}
-
-article h2 {
-	font-weight: normal;
-	text-decoration: none;
-}
-
-h1 {
-	line-height: 1.2em;
-}
-
-h2 {
-	font-weight: bold;
-	clear:	both;
-}
-
-h2.article_title a {
-	color: #0057ae;
-}
-
-h1.page_title {
-	margin-top: 0;
-	margin-bottom: 0;
-	font-family: monospace!important;
-	color: #aaa;
-}
-
-h3 {
-	font-weight: bold;
-	margin-bottom: 0.1em;
-}
-
-p {
-	margin: 1ex 0 0 0;
-}
-
-p, ul, ol {
-	line-height		: 2em;
-}
-
-ul, ol {
-	margin-top:		0;
-}
-
-pre {
-	font-family: monospace!important;
-}
-
-a {
-	text-decoration		: none;
-	/*text-transform	: uppercase;*/
-	color			: #226CFF;
-}
-
-#about {
-	color 			: #666;
-}
-
-#about img {
-	height: 48px;
-	height: 3em;
-}
-
-#menu {
-	background: #0057ae;
-	color: #eee;
-	padding: 0 0.5ex 0 0.5ex;
-	margin-top: 1ex;
-	clear:		both;
-	display:	block;
-	position:	relative;
-}
-
-#menu a.sel {
-	text-decoration: underline;
-}
-
-#menu:after {
-	content:	'.';
-	visibility:	hidden;
-	clear:		both;
-	display:	block;
-}
-
-.internal {
-	display:	inline;
-	padding:	3px;
-	
-}
-
 .red {
 	color: #EA4B2A;
-}
-
-.blue {
-	color			: black;
-}
-
-#menu img {
-	margin: auto;
-	position: absolute;
-	top:0; bottom:0;
-	max-height: 100%
-	max-width: 100%
-}
-
-.disclaimer {
-	margin: 2ex 3px 3px 0;
-	color:	#ccc;
 }
 
 .codehilite > pre {
@@ -171,26 +22,6 @@ a {
 	background: #eee;
 }
 
-#social a.twitter:hover {
-	color: #00bef6;
-}
-#social a.reddit:hover {
-	color: #D41D00;
-}
-#social a.tumblr:hover {
-	color: #2D4861;
-}
-#social a.stumbleupon:hover {
-	color: #EA4B2A;
-}
-#social a.delicious:hover {
-	color: #3274d1;
-}
-
-.download, .download h2 {
-	color: #666;
-}
-
 blockquote {
 	background: #ddd;
 	color: #666;
@@ -198,6 +29,10 @@ blockquote {
 	border-left: 2ex solid #bbb;
 }
 
-p + p {
+h2:before {
+	content: '# ';
+}
+h3:before {
+	content: '## ';
 }
 

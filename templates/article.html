@@ -5,14 +5,12 @@
 {% if not bare %}
 <link rel="Alternate" type="text/plain" href="{{basename}}.md" />
 <link rel="Alternate" media="Print" href="{{basename}}.print.html" />
-<script src="jquery-1.9.1.js">
-</script>
 {% endif %}
 {% endblock %}
 
 {% block content%}
+
 <div id="content">
 {{html|safe}}
-
 </div>
 {% endblock %}

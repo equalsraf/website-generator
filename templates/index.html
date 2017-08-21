@@ -5,6 +5,7 @@
 	{% if rss %}
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
 	{% endif %}
+	<meta name="viewport" content="width=device-width">
 
 	<title>{%block title%}{%endblock%}</title>
 	
@@ -26,13 +27,11 @@
 </head>
 <body>
 
-	{%if not bare%}
-		{% if subtitle %}
-		<h1><a href="index.html">raf</a>/{{subtitle}}</h1>
-		{% else %}
-		<h1><span class="red">raf$</span> dmesg</h1>
-		{% endif %}
-	{%endif%}
+	{% if subtitle %}
+	<h1><a href="index.html">raf</a>/{{subtitle}}</h1>
+	{% else %}
+	<h1><span class="red">raf$</span> dmesg</h1>
+	{% endif %}
 
 
 {% block content %}

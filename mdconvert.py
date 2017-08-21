@@ -20,6 +20,8 @@ import logging, os, sys, shutil, mimetypes
 import feedgenerator, datetime
 from urllib.parse import urljoin
 
+HOSTNAME = 'raf.zyks.org'
+
 def include_file(path):
     """Jinja function to read file from disk"""
     return open(path).read()
@@ -298,6 +300,10 @@ if __name__ == '__main__':
             if not 'hidden' in a['metadata'] and not 'noarticle' in a['metadata']]
     generate_html(indexpath, 'article_list.html', articles=articles_index, rss=True)
 
-    write_rss('http://raf.zyks.org', articles, 
+    write_rss('http://' + HOSTNAME, articles, 
             os.path.join(args['<outdir>'], 'rss.xml') )
+
+    # write github CNAME
+    with open(os.path.join(args['<outdir>'], 'CNAME'), 'w') as f:
+        f.write(HOSTNAME)
 
